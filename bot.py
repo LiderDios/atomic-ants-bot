@@ -3,22 +3,20 @@ import os
 
 import discord
 from dotenv import load_dotenv
+from discord.ext import commands
+
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-client = discord.Client()
+bot = commands.Bot(command_prefix='$')
 
-@client.event
+@bot.event
 async def on_ready():
-    print(f'{client.user.name} has connected to Discord!')
+    print(f'{bot.user.name} has connected to Discord!')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    if message.content == 'report lider':
-        response = "Jorgelanata es el mejor"
-        await message.channel.send(response)
+@bot.command(name='test')
+async def test(ctx, arg):
+    await ctx.send(arg)
 
-client.run(TOKEN)
+bot.run(TOKEN)
