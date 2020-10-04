@@ -95,7 +95,6 @@ async def nuevascrim(ctx, arg1, arg2):
     # $nuevascrim "09/19/18 13:55" asdf
 
     datetime_object = datetime.datetime.strptime(arg1, '%d/%m/%y %H:%M')
-
     print(datetime_object, "formato fecha hora.")
 
     # Obtengo la respuesta de la funcion
@@ -110,5 +109,22 @@ async def nuevascrim(ctx, arg1, arg2):
         await ctx.send(rta['Respuesta'])
         return rta['Estado']
     pass
+
+@bot.command(name='limpiar_la_db_los_fines_de_semana',help="No usar este comando")
+async def limpiar_archivo(ctx):
+    el_autor = ctx.author.name
+    print(el_autor)
+
+    if(el_autor!="LiderDios"):
+        print("puto el que lee")
+        # await ctx.send(arg)
+        await ctx.send(f"Ud. señor, {ctx.author}, no tiene permiso de ejecutar este comando. Besitos.")
+        return
+    else:
+     with open("datos.json", "w") as output: 
+          print("Archivo borrado ")
+    await ctx.send(f"Listo, {ctx.author}, el archivo se limpió.")
+
+
 
 bot.run(TOKEN)
