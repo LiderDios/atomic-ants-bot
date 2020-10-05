@@ -1,5 +1,5 @@
 # atomic-ants-bot
-Un bot para agendra scrims.
+Un bot para agendar scrims.
 Comandos disponibles:
 
 $scrims
