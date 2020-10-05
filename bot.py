@@ -12,11 +12,25 @@ def escribir(arg1, arg2):
     # Ejemplo de como guardar los datos. 
     # "13/04/20 23:00":"Alpha Dragons",
 
-    #Abro el archivo .json y lo guardo en una variable
-    with open('datos.json', 'r') as f:
-        cadena_json = json.load(f)
+    try: # Si el archivo .json ya existe directamente pasar los args
 
-    cadena_json[arg1] = arg2 # Agrego los dos argumentos como nuevas entradas del diccionario .json
+        #Abro el archivo .json y lo guardo en una variable
+        with open('datos.json', 'r') as f:
+            cadena_json = json.load(f)
+
+        cadena_json[arg1] = arg2 # Agrego los dos argumentos como nuevas entradas del diccionario .json
+
+    except Exception as err: # Si falla al abrir el .json porque no existe lo crea primero y despues lo pasa
+        print("Creando archivo .json debido a:", err)
+        with open('datos.json', 'w') as f:
+            json.dump({}, f, sort_keys=True, indent=2)
+        
+        #Abro el archivo .json y lo guardo en una variable
+        with open('datos.json', 'r') as f:
+            cadena_json = json.load(f)
+
+        cadena_json[arg1] = arg2 # Agrego los dos argumentos como nuevas entradas del diccionario .json
+
 
     try:
         # escribe en el archivo el dato
@@ -124,6 +138,9 @@ async def limpiar_archivo(ctx):
      with open("datos.json", "w") as output: 
           print("Archivo borrado ")
     await ctx.send(f"Listo, {ctx.author}, el archivo se limpió.")
+
+
+
 
 
 
