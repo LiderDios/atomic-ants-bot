@@ -8,6 +8,7 @@ from discord.ext import commands
 import json
 import asyncio
 
+# escribir
 def escribir(arg1, arg2):
     # Ejemplo de como guardar los datos. 
     # "13/04/20 23:00":"Alpha Dragons",
